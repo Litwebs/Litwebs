@@ -5,7 +5,8 @@ import "./Packages.css";
 const plans = [
   {
     name: "One Pager",
-    price: "£9.99",
+    price: "£99.99",
+    monthly: "4.99",
     description:
       "A clean, single-page site for getting online quickly and affordably. Great for startups and simple projects.",
     features: [
@@ -20,7 +21,8 @@ const plans = [
   },
   {
     name: "Basic",
-    price: "£19.99",
+    price: "199.99",
+    monthly: "9.99",
     description:
       "Ideal for small business or start ups. Contains basic functionality and limited features.",
     features: [
@@ -37,7 +39,8 @@ const plans = [
   },
   {
     name: "Standard",
-    price: "£34.99",
+    price: "£349.99",
+    monthly: "29.99",
     description:
       "Designed for growing businesses, offering expanded features and additional tools to help you scale efficiently.",
     features: [
@@ -57,7 +60,7 @@ const plans = [
   },
   {
     name: "Professional",
-    price: "£59.99",
+    // price: "£59.99",
     description:
       "Equipped with advanced features and premium support, ideal for enterprises maximising efficiency.",
     features: [
@@ -94,10 +97,14 @@ const PricingPlans = () => {
             className={`plan-card ${plan.highlighted ? "highlighted" : ""}`}>
             <h3>{plan.name}</h3>
             <p className='description'>{plan.description}</p>
-            <div className='price'>
-              {plan.price}
-              <span> /monthly</span>
-            </div>
+            {plan?.price && (
+              <div className='price'>
+                {plan?.price ?? ""}
+                {plan?.price && <span> / one time</span>}
+                <br />
+                {plan.monthly && <span>Monthly £{plan.monthly}</span>}
+              </div>
+            )}
             <button className='buy-btn' onClick={() => nav("/contact")}>
               Contact us
             </button>
