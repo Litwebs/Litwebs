@@ -11,6 +11,7 @@ import ServiceHero from "../../SeviceHero/SeviceHero";
 import HomeView from "./HomeView";
 import Reviews from "./Reviews/Reviews";
 import Showcase from "./Showcase/Showcase";
+import ContactForm from "../Contact/ContactForm";
 import "./Home.css";
 
 const Home = () => {
@@ -21,21 +22,19 @@ const Home = () => {
 
   const data = faqs.slice(0, 8);
   return (
-    <div className='home'>
+    <div className="home">
       <Header />
       <HomeView />
-      <Banner
-        title='Helping Businesses reach their potential'
-        height='200px'
-      />
+      <Banner title="Helping Businesses reach their potential" height="200px" />
       <Features />
       <ServiceHero />
 
       <Showcase />
+      <ContactForm />
       <Reviews />
       <Banner2
-        height='140px'
-        title='Ready to get Started? Choose a package suitable for your business'
+        height="140px"
+        title="Ready to get Started? Choose a package suitable for your business"
         btn={{ name: "Get Started!", onClick: () => nav("/packages") }}
       />
       <FAQHome data={data} />

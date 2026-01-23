@@ -1,3 +1,4 @@
+// Contact.jsx (small polish only)
 import React, { useEffect } from "react";
 import Header from "../../Header/Header";
 import Banner from "../../Banner/Banner";
@@ -8,22 +9,24 @@ import FAQHome from "../Home/FAQHome/FAQHome";
 import "./Contact.css";
 
 const Contact = () => {
-  //Scroll to top
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => window.scrollTo(0, 0), []);
+
   return (
-    <div className='contact'>
+    <div className="contact">
       <Header />
-      <Banner height='200px' title='What can we help you with?' />
-      <div className='con2 max-wid2'>
-        <h1 className='h1'>Contact us regarding your queries</h1>
-        <p className='p'>
-          Got a question about one of our packages? Already have a website and
-          looking to improve it? Or, maybe you just want to say hi. Please fill
-          in the form below and we’ll be in touch as soon as we can.
-        </p>
-      </div>
+      <Banner height="220px" title="What can we help you with?" />
+
+      <section className="contact-section max-wid2">
+        <div className="contact-intro">
+          <h1 className="contact-title">Contact us regarding your queries</h1>
+          <p className="contact-subtitle">
+            Got a question about one of our packages? Already have a website and
+            want to improve it? Or just want to say hi — fill in the form and
+            we’ll get back to you as soon as we can.
+          </p>
+        </div>
+      </section>
+
       <ContactForm />
       <FAQHome data={faqs.slice(0, 10)} />
       <Footer />
