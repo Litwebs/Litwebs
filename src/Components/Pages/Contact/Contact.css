@@ -23,7 +23,7 @@
 .contact-card {
   width: 100%;
   border: 1px solid var(--lw-text-color-10);
-  border-radius: 14px;
+  /* border-radius: 14px; */
   overflow: hidden;
   background: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -101,7 +101,7 @@
   font-size: 0.95rem;
   border: 1px solid var(--lw-text-color-10);
   color: #444;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 12px 12px;
   transition: border 160ms ease, box-shadow 160ms ease;
   background: #fff;
@@ -180,7 +180,7 @@
 }
 
 .status {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   padding: 12px;
   font-weight: 300;
   font-size: 0.95rem;
@@ -247,7 +247,7 @@
   gap: 0.7rem;
   width: 100%;
   padding: 11px 12px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   border: 1px solid var(--lw-text-color-10);
   background: rgba(255, 255, 255, 0.65);
   cursor: pointer;

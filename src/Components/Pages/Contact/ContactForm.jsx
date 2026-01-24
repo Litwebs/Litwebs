@@ -19,6 +19,7 @@ const ContactForm = () => {
     firstName: false,
     lastName: false,
     email: false,
+    phone: false,
     message: false,
   });
 
@@ -26,13 +27,15 @@ const ContactForm = () => {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     message: "",
   });
 
   // API base URL (CRA)
   // Put this in your .env: REACT_APP_API_URL=http://localhost:5001
   // IMPORTANT: restart the dev server after editing .env
-  const API_BASE = "http://localhost:5001";
+  // const API_BASE = "http://localhost:5001";
+  const API_BASE = "https://admin.litwebs.co.uk";
   const setField = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -50,6 +53,7 @@ const ContactForm = () => {
     const firstName = formData.firstName.trim();
     const lastName = formData.lastName.trim();
     const email = formData.email.trim();
+    const phone = formData.phone.trim();
     const message = formData.message.trim();
 
     if (!firstName) e.firstName = "First name is required";
@@ -65,12 +69,19 @@ const ContactForm = () => {
     else if (message.length > 1200)
       e.message = "Message is too long (max 1200)";
 
+    // Phone is optional; if provided, lightly validate it
+    if (phone) {
+      const digits = phone.replace(/\D/g, "");
+      if (digits.length < 7) e.phone = "Please enter a valid phone number";
+    }
+
     return e;
   }, [formData]);
 
   const isFormValid = Object.keys(errors).length === 0;
 
-  const showError = (field) => submitted || touched[field];
+  // Only show validation messages after the user clicks submit
+  const showError = () => submitted;
   const fieldHasError = (field) => showError(field) && !!errors[field];
 
   const handleSubmit = async (e) => {
@@ -98,6 +109,7 @@ const ContactForm = () => {
     const payload = {
       name: `${formData.firstName.trim()} ${formData.lastName.trim()}`.trim(),
       email: formData.email.trim(),
+      phone: formData.phone.trim() || undefined,
       message: formData.message.trim(),
       subject: "Contact form enquiry",
       sourcePage:
@@ -139,6 +151,7 @@ const ContactForm = () => {
           firstName: "",
           lastName: "",
           email: "",
+          phone: "",
           message: "",
         });
 
@@ -146,6 +159,7 @@ const ContactForm = () => {
           firstName: false,
           lastName: false,
           email: false,
+          phone: false,
           message: false,
         });
 
@@ -253,6 +267,29 @@ const ContactForm = () => {
 
             <div className="row">
               <div className="field">
+                <label className="label" htmlFor="phone">
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  disabled={isSending}
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={(e) => setField("phone", e.target.value)}
+                  onBlur={() => setFieldTouched("phone")}
+                  placeholder="Enter your phone number"
+                  className={fieldHasError("phone") ? "invalid" : ""}
+                  autoComplete="tel"
+                />
+                {fieldHasError("phone") ? (
+                  <small className="err">{errors.phone}</small>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="field">
                 <div className="label-row">
                   <label className="label" htmlFor="message">
                     Message
@@ -280,7 +317,7 @@ const ContactForm = () => {
 
             <div className="actions">
               <button
-                className="btn btn-primary"
+                className="lw-btn lw-btn-fill"
                 disabled={isSending}
                 type="submit"
               >

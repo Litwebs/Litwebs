@@ -26,16 +26,16 @@ const Home = () => {
       <Header />
       <HomeView />
       <Banner title="Helping Businesses reach their potential" height="200px" />
+      <Showcase />
       <Features />
       <ServiceHero />
 
-      <Showcase />
       <ContactForm />
       <Reviews />
       <Banner2
         height="140px"
         title="Ready to get Started? Choose a package suitable for your business"
-        btn={{ name: "Get Started!", onClick: () => nav("/packages") }}
+        btn={{ name: "Get Started!", onClick: () => nav("/contact") }}
       />
       <FAQHome data={data} />
       <Footer />

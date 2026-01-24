@@ -113,5 +113,22 @@
 
   .child {
     display: block;
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    margin: 0;
+  }
+
+  /* Mobile header title styles to match ServiceHero LW look */
+  .local-header-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 200;
+    line-height: 1;
+    /* subtle text glow similar to hero-right */
+    text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.6);
+    /* responsive size but smaller than the hero */
+    font-size: clamp(28px, 10vw, 64px);
+    text-align: left;
   }
 }

@@ -1,86 +1,168 @@
+/* Showcase.css */
+
+/* 2 columns */
 .gallery-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  padding: 2rem 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.2rem;
+  padding: 4rem 1rem;
 }
 
+@media (max-width: 900px) {
+  .gallery-container {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    padding: 1.5rem 0.6rem;
+  }
+}
+
+/* card */
 .project-card {
-  border-radius: 4px;
+  border-radius: 14px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
   cursor: pointer;
   position: relative;
-  perspective: 1000px;
+
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+}
+
+.project-card:active {
+  transform: translateY(-2px);
 }
 
 .card-inner {
   position: relative;
   width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
 }
 
-.project-card:hover .card-inner {
-  transform: rotateY(180deg);
+/* smooth bottom overlay spanning a larger area for a seamless blend */
+.card-inner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.00) 0%,
+    rgba(0, 0, 0, 0.04) 25%,
+    rgba(0, 0, 0, 0.16) 50%,
+    rgba(0, 0, 0, 0.28) 75%,
+    rgba(0, 0, 0, 0.40) 100%
+  );
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  pointer-events: none;
+  z-index: 1;
 }
 
+/* video */
 .project-image {
   width: 100%;
+  height: auto;
   display: block;
-  backface-visibility: hidden;
   object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 320ms ease, filter 320ms ease;
+  filter: saturate(1.04) contrast(1.04);
 }
 
-.card-overlay {
+.project-card:hover .project-image {
+  transform: scale(1.03);
+  filter: saturate(1.07) contrast(1.06);
+}
+
+/* seamless bottom blend (no hard box, no visible border) */
+.card-bottom {
   position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: #111;
-  color: white;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
+  right: 0;
+  bottom: 0;
+
+  padding: 1.1rem 1.1rem 1rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 4px;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  z-index: 2;
 }
 
-.card-overlay h3 {
-  color: var(--lw-text-color-9);
-  font-weight: 100;
-  font-size: 1.4rem;
+/* title always visible but subtle */
+.card-sub-title{
   margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 200;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+
+  /* tiny text glow so it sits nicely on any frame */
+  text-shadow: 0 6px 15px rgba(0, 0, 0, 0.45);
+}
+.card-title {
+  margin: 0 0 0.25rem 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 200;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+
+  /* tiny text glow so it sits nicely on any frame */
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
 }
 
-.project-info {
-  padding: 10px 1rem;
-}
-
-.project-info h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.project-info p {
-  color: gray;
+/* CTA: appears only on hover, looks like part of the gradient (not a block) */
+.card-cta {
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  padding: 0.75rem 0.95rem;
+  border-radius: 12px;
+  font-weight: 200;
   font-size: 0.9rem;
-  margin-top: 5px;
-  margin-bottom: 0;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+
+  transition: opacity 220ms ease, transform 220ms ease, background 220ms ease;
 }
 
+.project-card:hover .card-cta {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.card-cta:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* keep your existing button container */
 .btn-con-local {
   padding-bottom: 3rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-image,
+  .card-cta {
+    transition: none;
+  }
 }

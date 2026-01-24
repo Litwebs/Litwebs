@@ -12,12 +12,10 @@ import { v4 as uuidv4 } from "uuid";
 // import LW from "../../vids/LW.mp4";
 import FLEURE from "../../vids/FLEURE.mp4";
 import OF from "../../vids/OF.mp4";
-import T3 from "../../vids/T3.mp4";
 import vid79 from "../../vids/79.mp4";
-import ZHR from "../../vids/ZHR.mp4";
-import HIU from "../../vids/HIU.mp4";
-import DON from "../../vids/DON.mp4";
-import VV from "../../vids/VV.mp4";
+import DS from "../../vids/DS.mp4";
+import FleureAdmin from "../../vids/Fleure-admin.mp4";
+import lwAdmin from "../../vids/lw-admin.mp4";
 
 export const ContentContext = createContext();
 
@@ -28,11 +26,11 @@ export const ContextState = (props) => {
     Projects: [
       {
         id: 1,
-        video: vid79,
-        title: "79 Jewellers",
-        url: "https://79jewellers.com",
+        video: DS,
+        title: "Derma Suite",
+        url: "https://dermasuiteltd.com/",
         description:
-          "A sleek and elegant site for a luxury jewellery brand, built to reflect premium aesthetics.",
+          "Professional landing page tailored for a construction and renovation business.",
       },
       {
         id: 2,
@@ -44,51 +42,75 @@ export const ContextState = (props) => {
       },
       {
         id: 3,
+        video: FleureAdmin,
+        title: "Fleure Admin",
+        url: "https://fleureadmin.com",
+        description:
+          "Admin dashboard for managing Fleure's e-commerce platform with real-time analytics and user management.",
+      },
+      {
+        id: 4,
+        video: lwAdmin,
+        title: "LW Admin",
+        url: "https://lwadmin.com",
+        description:
+          "Admin dashboard for managing LW's e-commerce platform with real-time analytics and user management.",
+      },
+      // {
+      //   id: 5,
+      //   video: T3,
+      //   title: "T333 Customs",
+      //   url: "https://litwebs.co.uk",
+      //   description:
+      //     "Bold and custom-styled website for a car modification and detailing service.",
+      // },
+      // {
+      //   id: 6,
+      //   video: ZHR,
+      //   title: "ZHR Nails",
+      //   url: "https://zhrnails.com",
+      //   description:
+      //     "Chic and vibrant web presence for a modern nail salon and beauty studio.",
+      // },
+      // {
+      //   id: 7,
+      //   video: HIU,
+      //   title: "Hair It Up",
+      //   url: "https://hair-it-uo-elegance.lovable.app/",
+      //   description:
+      //     "Smooth user experience for a mobile hair styling and booking service.",
+      // },
+      // {
+      //   id: 8,
+      //   video: DON,
+      //   title: "Driving Donny",
+      //   url: "https://preview--driving-donney-online.lovable.app/",
+      //   description:
+      //     "A local driving school platform with booking features and a clean layout.",
+      // },
+      // {
+      //   id: 9,
+      //   video: VV,
+      //   title: "Build Pro",
+      //   url: "https://vape-vogue-bazaar.lovable.app/",
+      //   description:
+      //     "Professional landing page tailored for a construction and renovation business.",
+      // },
+      {
+        id: 10,
+        video: vid79,
+        title: "79 Jewellers",
+        url: "https://79jewellers.com",
+        description:
+          "A sleek and elegant site for a luxury jewellery brand, built to reflect premium aesthetics.",
+      },
+      {
+        id: 11,
         video: OF,
         title: "Oak Forest of Yorkshire",
         url: "https://oakforestofyorkshire.com",
         description:
           "An informative site promoting reforestation projects in Yorkshire with an eco-conscious design.",
-      },
-      {
-        id: 4,
-        video: T3,
-        title: "T333 Customs",
-        url: "https://litwebs.co.uk",
-        description:
-          "Bold and custom-styled website for a car modification and detailing service.",
-      },
-      {
-        id: 6,
-        video: ZHR,
-        title: "ZHR Nails",
-        url: "https://zhrnails.com",
-        description:
-          "Chic and vibrant web presence for a modern nail salon and beauty studio.",
-      },
-      {
-        id: 7,
-        video: HIU,
-        title: "Hair It Up",
-        url: "https://hair-it-uo-elegance.lovable.app/",
-        description:
-          "Smooth user experience for a mobile hair styling and booking service.",
-      },
-      {
-        id: 8,
-        video: DON,
-        title: "Driving Donny",
-        url: "https://preview--driving-donney-online.lovable.app/",
-        description:
-          "A local driving school platform with booking features and a clean layout.",
-      },
-      {
-        id: 9,
-        video: VV,
-        title: "Build Pro",
-        url: "https://vape-vogue-bazaar.lovable.app/",
-        description:
-          "Professional landing page tailored for a construction and renovation business.",
       },
     ],
     Basket: [],
@@ -125,7 +147,7 @@ export const ContextState = (props) => {
   const AddToBasket = (item) => {
     //Check if in basket
     const existingItem = state.Basket.find(
-      (basketItem) => basketItem.Name === item.Name
+      (basketItem) => basketItem.Name === item.Name,
     );
 
     if (existingItem) {
@@ -155,7 +177,7 @@ export const ContextState = (props) => {
     // Calculate total price using the updated basket
     const total = updatedBasket.reduce(
       (acc, item) => acc + item.Price * item.Quantity,
-      0
+      0,
     );
     // Dispatch total after updating the basket
     dispatch({ type: SET_TOTAL, payload: total });
@@ -173,21 +195,21 @@ export const ContextState = (props) => {
 
     // Check if the item already exists in the basket
     const existingItem = state.Basket.find(
-      (basketItem) => basketItem.id === item.id
+      (basketItem) => basketItem.id === item.id,
     );
 
     if (existingItem) {
       // If quantity is less than 1, remove the item
       if (quantity < 1) {
         updatedBasket = state.Basket.filter(
-          (basketItem) => basketItem.id !== item.id
+          (basketItem) => basketItem.id !== item.id,
         );
       } else {
         // Otherwise, update the quantity
         updatedBasket = state.Basket.map((basketItem) =>
           basketItem.id === item.id
             ? { ...basketItem, Quantity: quantity }
-            : basketItem
+            : basketItem,
         );
       }
     } else {
@@ -215,7 +237,7 @@ export const ContextState = (props) => {
     // Calculate total price using the updated basket
     const total = updatedBasket.reduce(
       (acc, item) => acc + item.Price * item.Quantity,
-      0
+      0,
     );
 
     // Dispatch total after updating the basket
@@ -237,7 +259,7 @@ export const ContextState = (props) => {
     } else {
       const index = state?.Alerts
         ? state.Alerts.findIndex(
-            (item) => item.alert.trim() === Alert.alert.trim()
+            (item) => item.alert.trim() === Alert.alert.trim(),
           )
         : -1;
 

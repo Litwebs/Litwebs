@@ -27,7 +27,7 @@ const SeviceHero = () => {
           <div className='btn-container'>
             <button
               className='lw-btn lw-btn-fill'
-              onClick={() => nav("/packages")}>
+              onClick={() => nav("/contact")}>
               Get started
             </button>
             <button

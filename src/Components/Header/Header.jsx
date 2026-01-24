@@ -24,31 +24,32 @@ const Header = () => {
   const nav = useNavigate();
 
   return (
-    <div className='header-con'>
-      <div className='header max-wid '>
-        <div className='left'></div>
+    <div className="header-con">
+      <div className="header max-wid ">
+        <div className="left"></div>
         <h3
-          className='child local-header-title'
+          className="child local-header-title"
           style={{ cursor: "pointer" }}
-          onClick={() => nav("/")}>
-          LIT WEBS
+          onClick={() => nav("/")}
+        >
+          LW
         </h3>
-        <div className='right'>
+        <div className="right">
           <ul>
             <li>
-              <Link name='Home' link='' />
+              <Link name="Home" link="" />
             </li>
-            <li>
+            {/* <li>
               <Link name='Packages' link='packages' />
+            </li> */}
+            <li>
+              <Link name="Process" link="process" />
             </li>
             <li>
-              <Link name='Process' link='process' />
+              <Link name="Our Work" link="example" />
             </li>
             <li>
-              <Link name='Our Work' link='example' />
-            </li>
-            <li>
-              <Link name='Contact us' link='contact' />
+              <Link name="Contact us" link="contact" />
             </li>
           </ul>
           <Menu setShow={setShow} isShow={isShow} />
