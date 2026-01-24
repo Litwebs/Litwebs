@@ -1,22 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.5f5536e2.css",
-    "main.js": "/static/js/main.22e7dfca.js",
-    "static/media/FLEURE.mp4": "/static/media/FLEURE.849b0df2131f885e9a60.mp4",
-    "static/media/79.mp4": "/static/media/79.9fe103d04ca9283d3597.mp4",
-    "static/media/DON.mp4": "/static/media/DON.3a19d4b121d501f70596.mp4",
-    "static/media/ZHR.mp4": "/static/media/ZHR.f5e6497ac072e47d20fc.mp4",
-    "static/media/HIU.mp4": "/static/media/HIU.f2cbadbf4df4480cd53b.mp4",
-    "static/media/OF.mp4": "/static/media/OF.c0aa6bf584ddb0ea7265.mp4",
-    "static/media/T3.mp4": "/static/media/T3.88f1d6cae7007e8a2812.mp4",
-    "static/media/VV.mp4": "/static/media/VV.e1eb4ac22460456faeb8.mp4",
+    "main.css": "/static/css/main.174a9b8f.css",
+    "main.js": "/static/js/main.52160b84.js",
+    "static/media/Fleure-admin.mp4": "/static/media/Fleure-admin.e224c0062826ee8401e4.mp4",
+    "static/media/OF.mp4": "/static/media/OF.802e29a30b5b66010055.mp4",
+    "static/media/79.mp4": "/static/media/79.3f05fe05ee7623494a0d.mp4",
+    "static/media/DS.mp4": "/static/media/DS.ffdbc07b30be649d51ae.mp4",
+    "static/media/lw-admin.mp4": "/static/media/lw-admin.337eed1a78581fe8b294.mp4",
+    "static/media/FLEURE.mp4": "/static/media/FLEURE.e6c8df7442a5f79b10f0.mp4",
     "static/media/logo.jpg": "/static/media/logo.dc34032517c71404ab36.jpg",
     "index.html": "/index.html",
-    "main.5f5536e2.css.map": "/static/css/main.5f5536e2.css.map",
-    "main.22e7dfca.js.map": "/static/js/main.22e7dfca.js.map"
+    "main.174a9b8f.css.map": "/static/css/main.174a9b8f.css.map",
+    "main.52160b84.js.map": "/static/js/main.52160b84.js.map"
   },
   "entrypoints": [
-    "static/css/main.5f5536e2.css",
-    "static/js/main.22e7dfca.js"
+    "static/css/main.174a9b8f.css",
+    "static/js/main.52160b84.js"
   ]
 }
