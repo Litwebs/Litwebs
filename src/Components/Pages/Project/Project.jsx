@@ -14,6 +14,7 @@ const Project = () => {
   useEffect(() => {
     if (Object.keys(SelectedProject).length === 0) {
       nav("/");
+      console.log(SelectedProject);
     }
     window.scrollTo(0, 0);
     // eslint-disable-next-line
@@ -38,17 +39,19 @@ const Project = () => {
             />
           </div>
           <h4>{SelectedProject.description}</h4>
-          <h2 onClick={openUri}>
-            Visit <strong>{SelectedProject.title}</strong>
-          </h2>
+          {SelectedProject.url && (
+            <h2 onClick={openUri}>
+              Visit <strong>{SelectedProject.title}</strong>
+            </h2>
+          )}
         </div>
       </main>
       <Banner2
         height="140px"
         title="Ready to get Started? Choose a package suitable for your business"
-        btn={{ name: "Get Started!", onClick: () => nav("/packages") }}
+        btn={{ name: "Get Started!", onClick: () => nav("/contact") }}
       />
-      <Showcase title="More Projects" indexStart={3} indexEnd={6}/>
+      <Showcase title="More Projects" indexStart={3} indexEnd={6} />
       <Footer />
     </div>
   );

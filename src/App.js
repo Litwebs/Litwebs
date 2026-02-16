@@ -1,29 +1,38 @@
+// App.js
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Pages/Home/Home";
-import Process from "./Components/Pages/Process/Process";
 import Example from "./Components/Pages/Example/Example";
 import Contact from "./Components/Pages/Contact/Contact";
 import FAQS from "./Components/Pages/FAQS/FAQS";
 import Project from "./Components/Pages/Project/Project";
-// import AlertList from "./Components/util/Alert/AlertList";
+import Services from "./Components/Pages/Services/Services";
+import About from "./Components/Pages/About/About";
 import { ContextState } from "./Context/Content/ContentState";
+import { useWebsiteAnalytics } from "./Components/util/useWebsiteAnalytics";
+
+function AppRoutes() {
+  // useWebsiteAnalytics();
+
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/example" element={<Example />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/faqs" element={<FAQS />} />
+      <Route path="/project" element={<Project />} />
+    </Routes>
+  );
+}
 
 function App() {
   return (
     <Router>
       <ContextState>
-        {/* <AlertList /> */}
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/example" element={<Example />} />
-          {/* <Route path='/packages' element={<Packages />} /> */}
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faqs" element={<FAQS />} />
-          <Route path="/project" element={<Project />} />
-        </Routes>
+        <AppRoutes />
       </ContextState>
     </Router>
   );

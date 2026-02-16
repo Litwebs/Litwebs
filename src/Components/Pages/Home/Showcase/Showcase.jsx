@@ -2,6 +2,8 @@
 import React, { useContext } from "react";
 import { ContentContext } from "../../../../Context/Content/ContentState";
 import { useNavigate } from "react-router-dom";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import "./Showcase.css";
 
 const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
@@ -27,6 +29,25 @@ const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
           goals, brand, and customer journey before we begin. By tailoring our
           work to your specific requirements.
         </p>
+
+        <div className="showcase-contact" aria-label="Contact details">
+          <a
+            className="showcase-contact-link"
+            href="tel:+447309843038"
+            aria-label="Call us at +44 7309 843038"
+          >
+            <FaPhoneAlt size={14} style={{ marginRight: 8 }} />
+            +44 7309 843038
+          </a>
+          <a
+            className="showcase-contact-link"
+            href="mailto:litwebs@outlook.co.uk"
+            aria-label="Email us at litwebs@outlook.co.uk"
+          >
+            <MdEmail size={16} style={{ marginRight: 8 }} />
+            litwebs@outlook.co.uk
+          </a>
+        </div>
       </div>
 
       <div className="gallery-container">
@@ -59,10 +80,7 @@ const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
               <div className="card-bottom">
                 <div>
                   <h3 className="card-title">{project.title}</h3>
-                  <h5 className="card-sub-title">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Explicabo, officia?
-                  </h5>
+                  <h5 className="card-sub-title">{project.description}</h5>
                 </div>
                 {/* Button only on hover */}
                 <button

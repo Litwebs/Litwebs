@@ -30,7 +30,7 @@ export const ContextState = (props) => {
         title: "Derma Suite",
         url: "https://dermasuiteltd.com/",
         description:
-          "Professional landing page tailored for a construction and renovation business.",
+          "A dedicated skin care website showcasing treatments, products, and online booking.",
       },
       {
         id: 2,
@@ -38,71 +38,32 @@ export const ContextState = (props) => {
         title: "Fleuré",
         url: "https://fleure.co.uk",
         description:
-          "Modern and minimal design for a premium skincare and wellness shop.",
+          "An elegant florist storefront for bouquets, arrangements, and local delivery.",
       },
       {
         id: 3,
         video: FleureAdmin,
         title: "Fleure Admin",
-        url: "https://fleureadmin.com",
+        // url: "https://fleureadmin.com",
         description:
-          "Admin dashboard for managing Fleure's e-commerce platform with real-time analytics and user management.",
+          "An admin dashboard for the florist to manage orders, inventory, and customers.",
       },
       {
         id: 4,
         video: lwAdmin,
         title: "LW Admin",
-        url: "https://lwadmin.com",
+        // url: "https://lwadmin.com",
         description:
-          "Admin dashboard for managing LW's e-commerce platform with real-time analytics and user management.",
+          "An internal Litwebs dashboard for managing projects, content, and analytics.",
       },
-      // {
-      //   id: 5,
-      //   video: T3,
-      //   title: "T333 Customs",
-      //   url: "https://litwebs.co.uk",
-      //   description:
-      //     "Bold and custom-styled website for a car modification and detailing service.",
-      // },
-      // {
-      //   id: 6,
-      //   video: ZHR,
-      //   title: "ZHR Nails",
-      //   url: "https://zhrnails.com",
-      //   description:
-      //     "Chic and vibrant web presence for a modern nail salon and beauty studio.",
-      // },
-      // {
-      //   id: 7,
-      //   video: HIU,
-      //   title: "Hair It Up",
-      //   url: "https://hair-it-uo-elegance.lovable.app/",
-      //   description:
-      //     "Smooth user experience for a mobile hair styling and booking service.",
-      // },
-      // {
-      //   id: 8,
-      //   video: DON,
-      //   title: "Driving Donny",
-      //   url: "https://preview--driving-donney-online.lovable.app/",
-      //   description:
-      //     "A local driving school platform with booking features and a clean layout.",
-      // },
-      // {
-      //   id: 9,
-      //   video: VV,
-      //   title: "Build Pro",
-      //   url: "https://vape-vogue-bazaar.lovable.app/",
-      //   description:
-      //     "Professional landing page tailored for a construction and renovation business.",
-      // },
+
       {
         id: 10,
         video: vid79,
         title: "79 Jewellers",
         url: "https://79jewellers.com",
         description:
-          "A sleek and elegant site for a luxury jewellery brand, built to reflect premium aesthetics.",
+          "An online jewellers shop for showcasing and selling fine jewellery collections.",
       },
       {
         id: 11,
@@ -110,7 +71,7 @@ export const ContextState = (props) => {
         title: "Oak Forest of Yorkshire",
         url: "https://oakforestofyorkshire.com",
         description:
-          "An informative site promoting reforestation projects in Yorkshire with an eco-conscious design.",
+          "A furniture shop website presenting collections, materials, and options for custom orders.",
       },
     ],
     Basket: [],

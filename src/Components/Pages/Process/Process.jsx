@@ -65,13 +65,13 @@ const Process = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className='process'>
+    <div className="process">
       <Header />
-      <Banner title='How It Works' height='200px' />
-      <h1 className='t-2' style={{ marginTop: "5rem" }}>
+      <Banner title="How It Works" height="200px" />
+      <h1 className="t-2" style={{ marginTop: "5rem" }}>
         Our Process
       </h1>
-      <p className='p'>
+      <p className="p">
         We like to keep things simple and find this formula works!
       </p>
       {data.map((item, idx) => (
@@ -84,9 +84,9 @@ const Process = () => {
         />
       ))}
       <Banner2
-        height='200px'
-        title='Ready to get Started? Choose a package suitable for your business'
-        btn={{ name: "Get Started!", onClick: () => nav("/packages") }}
+        height="200px"
+        title="Ready to get Started? Choose a package suitable for your business"
+        btn={{ name: "Get Started!", onClick: () => nav("/contact") }}
       />
       <FAQ2 />
       <Footer />

@@ -39,7 +39,7 @@
 .footer .item:nth-child(1) img {
   height: 120px;
   width: 120px;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 .footer .item:nth-child(1) h3 {
   margin: 0;

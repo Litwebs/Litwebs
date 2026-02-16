@@ -17,12 +17,12 @@
 .showcase-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 16px;
 }
 
 .showcase-card {
   border-radius: 16px;
-  padding: 20px;
+  /* padding: 20px; */
   text-align: left;
   background: #fff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;

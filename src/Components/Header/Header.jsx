@@ -5,6 +5,7 @@ import Nav from "../nav/Nav";
 import "../util/core.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import logo from "../../Images/logo.jpg";
 // import { CiShoppingBasket } from "react-icons/ci";
 
 const Header = () => {
@@ -26,14 +27,9 @@ const Header = () => {
   return (
     <div className="header-con">
       <div className="header max-wid ">
-        <div className="left"></div>
-        <h3
-          className="child local-header-title"
-          style={{ cursor: "pointer" }}
-          onClick={() => nav("/")}
-        >
-          LW
-        </h3>
+        <div className="left">
+          <img src={logo} alt="Litwebs logo" onClick={() => nav("/")} />
+        </div>
         <div className="right">
           <ul>
             <li>
@@ -43,10 +39,13 @@ const Header = () => {
               <Link name='Packages' link='packages' />
             </li> */}
             <li>
-              <Link name="Process" link="process" />
+              <Link name="Services" link="services" />
             </li>
             <li>
               <Link name="Our Work" link="example" />
+            </li>
+            <li>
+              <Link name="About" link="about" />
             </li>
             <li>
               <Link name="Contact us" link="contact" />

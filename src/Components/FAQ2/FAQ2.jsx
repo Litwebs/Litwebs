@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaChevronDown, FaChevronRight } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import data from "../../Context/FAQS";
 import "./FAQ2.css";
 import "../util/core.css";
@@ -49,6 +49,16 @@ const FAQ2 = () => {
           </div>
         ))}
       </div>
+      <p
+        className="p-3"
+        style={{ textAlign: "center", marginTop: "1rem", fontSize: "0.9rem" }}
+      >
+        Still have another question?{" "}
+        <Link to="/contact" style={{ textDecoration: "none", color: "#000" }}>
+          Contact us
+        </Link>
+        .
+      </p>
       <button className="btn" onClick={() => nav("/faqs")}>
         View All FAQs
       </button>

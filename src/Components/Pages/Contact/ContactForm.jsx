@@ -31,9 +31,6 @@ const ContactForm = () => {
     message: "",
   });
 
-  // API base URL (CRA)
-  // Put this in your .env: REACT_APP_API_URL=http://localhost:5001
-  // IMPORTANT: restart the dev server after editing .env
   // const API_BASE = "http://localhost:5001";
   const API_BASE = "https://admin.litwebs.co.uk";
   const setField = (name, value) => {
@@ -387,10 +384,14 @@ const ContactForm = () => {
                 <span>Snapchat</span>
               </button>
 
-              <div className="aside-item static">
+              <a
+                href="tel:+447309843038"
+                className="aside-item"
+                aria-label="Call us at +44 7309 843038"
+              >
                 <FaPhoneAlt size={18} className="aside-icon" />
                 <span>+44 7309 843038</span>
-              </div>
+              </a>
 
               <button
                 type="button"

@@ -24,13 +24,13 @@ const Nav = ({ isShow }) => {
 
   return (
     <div className={`nav ${isShow ? "active" : "hidden"}`}>
-      <div className='item '>
-        <Link className='link2' to='/' onClick={() => window.location.reload()}>
+      <div className="item ">
+        <Link className="link2" to="/" onClick={() => window.location.reload()}>
           Home
         </Link>
-        <BiSolidChevronRight className='icon' />
+        <BiSolidChevronRight className="icon" />
       </div>
-      <div className='item'>
+      {/* <div className='item'>
         <Link
           className='link2'
           to='/packages'
@@ -38,33 +38,46 @@ const Nav = ({ isShow }) => {
           Packages
         </Link>
         <BiSolidChevronRight className='icon' />
-      </div>
-      <div className='item'>
+      </div> */}
+      <div className="item">
         <Link
-          className='link2'
-          to='/process'
-          onClick={() => window.scrollTo(0, 0)}>
-          Process
+          className="link2"
+          to="/services"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          Services
         </Link>
-        <BiSolidChevronRight className='icon' />
+        <BiSolidChevronRight className="icon" />
       </div>
-      <div className='item'>
+      <div className="item">
         <Link
-          className='link2'
-          to='/example'
-          onClick={() => window.scrollTo(0, 0)}>
+          className="link2"
+          to="/example"
+          onClick={() => window.scrollTo(0, 0)}
+        >
           Our Work
         </Link>
-        <BiSolidChevronRight className='icon' />
+        <BiSolidChevronRight className="icon" />
       </div>
-      <div className='item'>
+      <div className="item">
         <Link
-          className='link2'
-          to='/contact'
-          onClick={() => window.scrollTo(0, 0)}>
+          className="link2"
+          to="/about"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          About
+        </Link>
+        <BiSolidChevronRight className="icon" />
+      </div>
+      <div className="item">
+        <Link
+          className="link2"
+          to="/contact"
+          onClick={() => window.scrollTo(0, 0)}
+        >
           Contact us
         </Link>
-        <BiSolidChevronRight className='icon' />
+        <BiSolidChevronRight className="icon" />
       </div>
       {/* <div className='item'>
         <Link

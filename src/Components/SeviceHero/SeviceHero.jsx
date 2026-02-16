@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 const SeviceHero = () => {
   const nav = useNavigate();
   return (
-    <div className='max-wid'>
-      <div className='service-hero'>
-        <div className='hero-left'>
-          <h1 className='t-2' style={{ textAlign: "start" }}>
+    <div className="max-wid">
+      <div className="service-hero">
+        <div className="hero-left">
+          <h1 className="t-2" style={{ textAlign: "start" }}>
             {" "}
             {/* Why choose our services` */}
             WHY CHOOSE OUR SERVICES?
           </h1>
-          <p className='p-2'>
+          <p className="p-2">
             At our core, we believe your website should be a true reflection of
             your business, which is why we focus on thoroughly understanding
             your goals, brand, and customer journey before we begin. By
@@ -24,20 +24,22 @@ const SeviceHero = () => {
             also elevates your online presence and drives meaningful results for
             your business.
           </p>
-          <div className='btn-container'>
+          <div className="btn-container">
             <button
-              className='lw-btn lw-btn-fill'
-              onClick={() => nav("/contact")}>
+              className="lw-btn lw-btn-fill"
+              onClick={() => nav("/contact")}
+            >
               Get started
             </button>
             <button
-              className=' lw-btn lw-btn-outline'
-              onClick={() => nav("/process")}>
+              className=" lw-btn lw-btn-outline"
+              onClick={() => nav("/services")}
+            >
               Learn More
             </button>
           </div>
         </div>
-        <div className='hero-right'>
+        <div className="hero-right">
           <h1>LW</h1>
         </div>
       </div>

@@ -1,0 +1,42 @@
+.about-section {
+  padding: 0 1rem 5rem 1rem;
+}
+
+.about-title {
+  margin: 2.2rem 0 1rem 0;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--blue-dark);
+}
+
+.about-paragraph {
+  margin: 0 0 1rem 0;
+  font-weight: 300;
+  color: var(--gray-color-9);
+  line-height: 1.75;
+  max-width: 75ch;
+}
+
+.about-block {
+  margin-top: 1.6rem;
+}
+
+.about-heading {
+  margin: 0 0 0.75rem 0;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--blue-dark);
+}
+
+.about-list {
+  margin: 0 0 1rem 0;
+  padding-left: 1.2rem;
+  max-width: 75ch;
+}
+
+.about-list-item {
+  margin: 0.35rem 0;
+  font-weight: 300;
+  color: var(--gray-color-9);
+  line-height: 1.6;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import Question from "./Question";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./FAQ1.css";
 
 const FAQ1 = ({ data }) => {
@@ -17,6 +17,16 @@ const FAQ1 = ({ data }) => {
             <Question key={idx} title={item.question} ans={item.answer} />
           ))}
         </div>
+        <p
+          className="p-3"
+          style={{ textAlign: "center", marginTop: "1rem", fontSize: "0.9rem" }}
+        >
+          Still have another question?{" "}
+          <Link to="/contact" style={{ textDecoration: "none", color: "#000" }}>
+            Contact us
+          </Link>
+          .
+        </p>
         <div className="btn-con">
           <button className="btn" onClick={() => nav("/faqs")}>
             View All FAQs
