@@ -66,8 +66,8 @@ const ContactForm = () => {
     else if (message.length > 1200)
       e.message = "Message is too long (max 1200)";
 
-    // Phone is optional; if provided, lightly validate it
-    if (phone) {
+    if (!phone) e.phone = "Phone is required";
+    else {
       const digits = phone.replace(/\D/g, "");
       if (digits.length < 7) e.phone = "Please enter a valid phone number";
     }
@@ -106,7 +106,7 @@ const ContactForm = () => {
     const payload = {
       name: `${formData.firstName.trim()} ${formData.lastName.trim()}`.trim(),
       email: formData.email.trim(),
-      phone: formData.phone.trim() || undefined,
+      phone: formData.phone.trim(),
       message: formData.message.trim(),
       subject: "Contact form enquiry",
       sourcePage:
@@ -211,6 +211,7 @@ const ContactForm = () => {
                   placeholder="Enter your first name"
                   className={fieldHasError("firstName") ? "invalid" : ""}
                   autoComplete="given-name"
+                  required
                 />
                 {fieldHasError("firstName") ? (
                   <small className="err">{errors.firstName}</small>
@@ -232,6 +233,7 @@ const ContactForm = () => {
                   placeholder="Enter your last name"
                   className={fieldHasError("lastName") ? "invalid" : ""}
                   autoComplete="family-name"
+                  required
                 />
                 {fieldHasError("lastName") ? (
                   <small className="err">{errors.lastName}</small>
@@ -255,6 +257,7 @@ const ContactForm = () => {
                   placeholder="Enter your email address"
                   className={fieldHasError("email") ? "invalid" : ""}
                   autoComplete="email"
+                  required
                 />
                 {fieldHasError("email") ? (
                   <small className="err">{errors.email}</small>
@@ -278,6 +281,7 @@ const ContactForm = () => {
                   placeholder="Enter your phone number"
                   className={fieldHasError("phone") ? "invalid" : ""}
                   autoComplete="tel"
+                  required
                 />
                 {fieldHasError("phone") ? (
                   <small className="err">{errors.phone}</small>
@@ -305,6 +309,7 @@ const ContactForm = () => {
                   onBlur={() => setFieldTouched("message")}
                   placeholder="Write your message here"
                   className={fieldHasError("message") ? "invalid" : ""}
+                  required
                 />
                 {fieldHasError("message") ? (
                   <small className="err">{errors.message}</small>
