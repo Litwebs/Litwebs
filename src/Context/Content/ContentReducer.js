@@ -1,5 +1,6 @@
 import {
   SET_CONTENT,
+  SET_PROJECTS,
   SET_BASKET,
   SET_TOTAL,
   SET_ALERTS,
@@ -14,6 +15,12 @@ const AlertReducer = (state, action) => {
       return {
         ...state,
         Content: action.payload,
+      };
+    }
+    case SET_PROJECTS: {
+      return {
+        ...state,
+        Projects: action.payload,
       };
     }
     case SET_BASKET: {

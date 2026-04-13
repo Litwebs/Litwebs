@@ -4,11 +4,14 @@ import { ContentContext } from "../../../../Context/Content/ContentState";
 import { useNavigate } from "react-router-dom";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import ProjectFeedStatus from "../../../util/ProjectFeedStatus/ProjectFeedStatus";
 import "./Showcase.css";
 
 const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
   const nav = useNavigate();
-  const { Projects, setPro } = useContext(ContentContext);
+  const { Projects, ProjectsLoading, ProjectsError, refreshProjects, setPro } =
+    useContext(ContentContext);
+  const visibleProjects = Projects.slice(indexStart, indexEnd);
 
   const onClick = (project) => {
     setPro(project);
@@ -51,7 +54,7 @@ const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
       </div>
 
       <div className="gallery-container">
-        {Projects.slice(indexStart, indexEnd).map((project, index) => (
+        {visibleProjects.map((project, index) => (
           <div
             className="project-card"
             key={index}
@@ -61,6 +64,10 @@ const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
             onKeyDown={(e) => e.key === "Enter" && onClick(project)}
           >
             <div className="card-inner">
+              <div className="card-topline">
+                <span className="card-tag">Website spotlight</span>
+              </div>
+
               <video
                 className="project-image"
                 autoPlay
@@ -76,13 +83,25 @@ const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
                 <source src={project.video} type="video/mp4" />
               </video>
 
-              {/* Seamless bottom fade + title always */}
               <div className="card-bottom">
-                <div>
-                  <h3 className="card-title">{project.title}</h3>
-                  <h5 className="card-sub-title">{project.description}</h5>
+                <div className="card-copy">
+                  <div className="card-brand-row">
+                    {project.logoUrl && (
+                      <div className="card-logo-wrap">
+                        <img
+                          className="card-logo"
+                          src={project.logoUrl}
+                          alt={`${project.title} logo`}
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      {/* <p className="card-kicker">Selected project</p> */}
+                      <h3 className="card-title">{project.title}</h3>
+                    </div>
+                  </div>
                 </div>
-                {/* Button only on hover */}
                 <button
                   className="card-cta"
                   onClick={(e) => {
@@ -97,6 +116,17 @@ const Showcase = ({ title = "Showcase", indexStart = 0, indexEnd = 4 }) => {
           </div>
         ))}
       </div>
+
+      <ProjectFeedStatus
+        isLoading={ProjectsLoading}
+        error={ProjectsError}
+        isEmpty={
+          !ProjectsLoading && !ProjectsError && visibleProjects.length === 0
+        }
+        onRetry={refreshProjects}
+        loadingMessage="We are fetching the latest showcase projects from the public content API."
+        emptyMessage="There are no published projects to show right now."
+      />
 
       <div className="btn-con-local">
         <button

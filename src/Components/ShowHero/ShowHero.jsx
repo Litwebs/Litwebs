@@ -6,6 +6,11 @@ import { ContentContext } from "../../Context/Content/ContentState";
 const ShowHero = ({ project, reverse = false }) => {
   const nav = useNavigate();
   const { setPro } = useContext(ContentContext);
+
+  if (!project) {
+    return null;
+  }
+
   const onClick = (project) => {
     setPro(project);
     nav("/project");
@@ -24,6 +29,22 @@ const ShowHero = ({ project, reverse = false }) => {
           />
         </div>
         <div className="showhero-left">
+          <div className="showhero-brand-row">
+            {project.logoUrl && (
+              <div className="showhero-logo-wrap">
+                <img
+                  className="showhero-logo"
+                  src={project.logoUrl}
+                  alt={`${project.title} logo`}
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div className="showhero-meta-copy">
+              <p className="showhero-kicker">Website spotlight</p>
+              <p className="showhero-domain">{project.domain}</p>
+            </div>
+          </div>
           <h1>{project.title}</h1>
           <p className="description">{project.description}</p>
 
@@ -36,6 +57,7 @@ const ShowHero = ({ project, reverse = false }) => {
           </button>
           <button
             className="lw-btn lw-btn-outline"
+            disabled={!project.url}
             onClick={() => window.open(project.url, "_blank")}
           >
             Live Preview

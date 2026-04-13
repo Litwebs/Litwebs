@@ -1,85 +1,89 @@
-import { createContext, useReducer, useEffect, useRef } from "react";
+import { createContext, useReducer, useEffect, useRef, useState } from "react";
 import ContentReducer from "./ContentReducer";
 import { useLocation } from "react-router-dom";
 import {
   SET_CONTENT,
+  SET_PROJECTS,
   SET_BASKET,
   SET_TOTAL,
   SET_ALERTS,
   SET_PROJECT,
 } from "../TYPES";
 import { v4 as uuidv4 } from "uuid";
-// import LW from "../../vids/LW.mp4";
-import FLEURE from "../../vids/FLEURE.mp4";
-import OF from "../../vids/OF.mp4";
-import vid79 from "../../vids/79.mp4";
-import DS from "../../vids/DS.mp4";
-import FleureAdmin from "../../vids/Fleure-admin.mp4";
-import lwAdmin from "../../vids/lw-admin.mp4";
 
 export const ContentContext = createContext();
+
+const PROJECTS_API_URL =
+  "https://admin.litwebs.co.uk/api/websites/public-content";
+
+const stripHtml = (value = "") => {
+  const html = String(value || "").trim();
+
+  if (!html) {
+    return "No description provided.";
+  }
+
+  if (typeof window !== "undefined" && window.DOMParser) {
+    const parser = new window.DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const text = doc.body.textContent?.trim();
+
+    return text || "No description provided.";
+  }
+
+  const text = html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return text || "No description provided.";
+};
+
+const getStoredProject = () => {
+  try {
+    const storedProject = localStorage.getItem("pro");
+    return storedProject ? JSON.parse(storedProject) : {};
+  } catch (error) {
+    localStorage.removeItem("pro");
+    return {};
+  }
+};
+
+const getDomainLabel = (value = "") => {
+  if (!value) {
+    return "No live URL";
+  }
+
+  try {
+    const parsedUrl = new URL(value);
+    return parsedUrl.hostname.replace(/^www\./, "");
+  } catch (error) {
+    return value;
+  }
+};
+
+const normalizeProject = (project) => ({
+  id: project.websiteId,
+  websiteId: project.websiteId,
+  sequence: Number(project.sequence) || 0,
+  video: project.videoUrl || "",
+  title: project.title || "Untitled Project",
+  url: project.linkUrl || "",
+  logoUrl: project.logoUrl || "",
+  domain: getDomainLabel(project.linkUrl),
+  description: stripHtml(project.description),
+});
 
 export const ContextState = (props) => {
   const path = useLocation();
   const alertRef = useRef("");
+  const [projectsLoading, setProjectsLoading] = useState(true);
+  const [projectsError, setProjectsError] = useState("");
   const initialState = {
-    Projects: [
-      {
-        id: 1,
-        video: DS,
-        title: "Derma Suite",
-        url: "https://dermasuiteltd.com/",
-        description:
-          "A dedicated skin care website showcasing treatments, products, and online booking.",
-      },
-      {
-        id: 2,
-        video: FLEURE,
-        title: "Fleuré",
-        url: "https://fleure.co.uk",
-        description:
-          "An elegant florist storefront for bouquets, arrangements, and local delivery.",
-      },
-      {
-        id: 3,
-        video: FleureAdmin,
-        title: "Fleure Admin",
-        // url: "https://fleureadmin.com",
-        description:
-          "An admin dashboard for the florist to manage orders, inventory, and customers.",
-      },
-      {
-        id: 4,
-        video: lwAdmin,
-        title: "LW Admin",
-        // url: "https://lwadmin.com",
-        description:
-          "An internal Litwebs dashboard for managing projects, content, and analytics.",
-      },
-
-      {
-        id: 10,
-        video: vid79,
-        title: "79 Jewellers",
-        url: "https://79jewellers.com",
-        description:
-          "An online jewellers shop for showcasing and selling fine jewellery collections.",
-      },
-      {
-        id: 11,
-        video: OF,
-        title: "Oak Forest of Yorkshire",
-        url: "https://oakforestofyorkshire.com",
-        description:
-          "A furniture shop website presenting collections, materials, and options for custom orders.",
-      },
-    ],
+    Projects: [],
     Basket: [],
     Alerts: [],
     Content: {},
-    SelectedProject: localStorage.getItem("pro")
-      ? JSON.parse(localStorage.getItem("pro"))
-      : {},
+    SelectedProject: getStoredProject(),
 
     Total: 0,
   };
@@ -95,6 +99,64 @@ export const ContextState = (props) => {
       localStorage.removeItem("pro");
     }
   }, [path]);
+
+  const refreshProjects = async (signal) => {
+    setProjectsLoading(true);
+    setProjectsError("");
+
+    try {
+      const response = await fetch(PROJECTS_API_URL, { signal });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch website content: ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const projects = Array.isArray(payload?.data?.websites)
+        ? payload.data.websites
+            .filter((project) => project?.visibility !== false)
+            .sort(
+              (left, right) =>
+                (Number(left?.sequence) || 0) - (Number(right?.sequence) || 0),
+            )
+            .map(normalizeProject)
+        : [];
+
+      dispatch({ type: SET_PROJECTS, payload: projects });
+
+      const selectedProject = getStoredProject();
+      if (selectedProject?.websiteId) {
+        const refreshedProject = projects.find(
+          (project) => project.websiteId === selectedProject.websiteId,
+        );
+
+        if (refreshedProject) {
+          dispatch({ type: SET_PROJECT, payload: refreshedProject });
+          localStorage.setItem("pro", JSON.stringify(refreshedProject));
+        }
+      }
+    } catch (error) {
+      if (error.name === "AbortError") {
+        return;
+      }
+
+      console.error(error);
+      setProjectsError(
+        "We could not load the latest website content. Please try again in a moment.",
+      );
+      dispatch({ type: SET_PROJECTS, payload: [] });
+    } finally {
+      setProjectsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    refreshProjects(controller.signal);
+
+    return () => controller.abort();
+  }, []);
 
   const setPro = (project) => {
     localStorage.setItem("pro", JSON.stringify(project));
@@ -251,6 +313,8 @@ export const ContextState = (props) => {
     <ContentContext.Provider
       value={{
         Projects: state.Projects,
+        ProjectsLoading: projectsLoading,
+        ProjectsError: projectsError,
         Content: state.Content,
         PackageItems: state.PackageItems,
         Basket: state.Basket,
@@ -262,6 +326,7 @@ export const ContextState = (props) => {
         SetContent: SetContent,
         CreateAlert: CreateAlert,
         RemoveAlert: RemoveAlert,
+        refreshProjects: refreshProjects,
         AddToBasket: AddToBasket,
         RemoveFromBasket: RemoveFromBasket,
       }}

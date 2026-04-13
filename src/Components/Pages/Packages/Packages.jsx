@@ -10,9 +10,13 @@ import data from "../../../Context/FAQS";
 import "./Packages.css";
 import ShowHero from "../../ShowHero/ShowHero";
 import { ContentContext } from "../../../Context/Content/ContentState";
+import ProjectFeedStatus from "../../util/ProjectFeedStatus/ProjectFeedStatus";
 
 const Packages = () => {
-  const { Projects } = useContext(ContentContext);
+  const { Projects, ProjectsLoading, ProjectsError, refreshProjects } =
+    useContext(ContentContext);
+  const featuredProjects = Projects.slice(0, 6);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -27,12 +31,23 @@ const Packages = () => {
         title="Ready to get Started? Choose a package suitable for your business"
         btn={{ name: "Get Started!", onClick: () => window.scrollTo(0, 0) }}
       />
-      <ShowHero project={Projects[0]} />
-      <ShowHero reverse={true} project={Projects[1]} />
-      <ShowHero project={Projects[2]} />
-      <ShowHero reverse={true} project={Projects[6]} />
-      <ShowHero project={Projects[7]} />
-      <ShowHero reverse={true} project={Projects[5]} />
+      <ProjectFeedStatus
+        isLoading={ProjectsLoading}
+        error={ProjectsError}
+        isEmpty={
+          !ProjectsLoading && !ProjectsError && featuredProjects.length === 0
+        }
+        onRetry={refreshProjects}
+        loadingMessage="We are fetching the latest featured projects for this page."
+        emptyMessage="There are no featured projects available right now."
+      />
+      {featuredProjects.map((project, index) => (
+        <ShowHero
+          key={project.websiteId || project.id || index}
+          project={project}
+          reverse={index % 2 === 1}
+        />
+      ))}
       <Banner2
         height="140px"
         title="Decided? Choose a package suitable for your requirements"
