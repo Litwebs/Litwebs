@@ -1,18 +1,23 @@
 .link {
-  color: var(--lw-text-color-1);
-  font-size: var(--small-text) !important;
-  padding: 10px 15px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.88rem !important;
+  font-weight: 500;
+  padding: 8px 14px;
   cursor: pointer;
-  transition: var(--trans);
+  transition: color 180ms ease;
   text-decoration: none;
-  background-color: var(--gray-color-3);
-  margin-right: 5px;
+  background: transparent;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
 }
 
 .link:hover {
-color: #2361ac !important;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
 }
 
 .hovered {
-  color: #1d3f69 !important;
+  color: #fff !important;
+  background: rgba(124, 58, 237, 0.15) !important;
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25);
 }

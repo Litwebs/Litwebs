@@ -1,134 +1,167 @@
-/* Header Container */
+/* Header */
 .header-con {
   top: 0;
   left: 0;
   z-index: 100;
   position: sticky;
   width: 100%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(6, 6, 14, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
   transition: all 0.3s ease-in-out;
-  padding: 1rem;
+  padding: 0.2rem 1rem;
 }
 
-/* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem !important;
+  padding: 0.6rem 1rem !important;
   position: relative;
   height: 100%;
 }
 
-.local-header-title {
-  font-weight: 200;
-  font-size: 22px;
-}
+.local-header-title { font-weight: 200; font-size: 22px; color: #fff; }
+
 .child {
   position: absolute;
   margin: 0;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   display: none;
 }
 
-.header .left {
+.header .left { display: flex; align-items: center; }
+
+.header .right {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .header .left img {
   border-radius: 10%;
-  height: 65px;
-  width: 65px;
+  height: 65px; width: 65px;
   object-fit: cover;
   display: block;
   cursor: pointer;
 }
 
-/* Right Side (Navigation Links) */
 .header .right ul {
   display: flex;
   align-items: center;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
+  gap: 2px;
 }
 
 .header .right ul li a {
   background-color: transparent;
-}
-.header .right ul li a:hover {
-  color: black;
-  background-color: transparent !important;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Navigation Icons */
+.header .right ul li a:hover {
+  color: #fff !important;
+}
+
+/* Contact us — gradient pill CTA */
+.header .right ul li:last-child a {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 0 18px rgba(124, 58, 237, 0.35);
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.header .right ul li:last-child a:hover {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.55) !important;
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
+}
+
+.header .right ul li:last-child a.hovered {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.5);
+}
+
 .header .right ul .icon-header {
   padding: 10px;
   margin-left: 10px;
   transition: var(--trans);
   border-radius: var(--border-rad);
   cursor: pointer;
-  color: var(--gray-color-9);
+  color: rgba(255,255,255,0.45);
   font-size: 22px;
 }
 
-/* Hover Effect */
-.header .right ul .icon-header:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  color: var(--blue-dark);
+/* ── Responsive ── */
+
+/* Compact links at medium viewports */
+@media (max-width: 1024px) {
+  .header .right ul {
+    gap: 0;
+  }
+
+  .header .right ul li a {
+    font-size: 0.82rem;
+  }
+
+  .header .right ul li:last-child a {
+    padding: 7px 14px;
+  }
 }
 
-/* Shopping Basket Counter */
-.counter-tag {
-  margin: 0 !important;
-  position: absolute;
-  top: 7px;
-  right: 6px;
-  background-color: var(--blue-dark);
-  color: var(--gray-color-4);
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  font-size: 12px;
-  text-align: center;
-  padding: 3px;
-  font-weight: bold;
-}
-/* Responsive Design for Mobile */
+/* Hide desktop nav, show hamburger */
 @media (max-width: 768px) {
   .header .right ul {
     display: none;
   }
 
   .header .left img {
-    height: 50px;
-    width: 50px;
+    height: 52px;
+    width: 52px;
   }
 
-  .child {
-    display: block;
-    position: static;
-    transform: none;
-    left: auto;
-    top: auto;
-    margin: 0;
+  .header {
+    padding: 0.5rem 0.5rem !important;
   }
+}
 
-  /* Mobile header title styles to match ServiceHero LW look */
-  .local-header-title {
-    font-family: "Playfair Display", serif;
-    font-weight: 200;
-    line-height: 1;
-    /* subtle text glow similar to hero-right */
-    text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.6);
-    /* responsive size but smaller than the hero */
-    font-size: clamp(28px, 10vw, 64px);
-    text-align: left;
-  }
+/* ── Theme toggle ── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+[data-theme="light"] .theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000;
 }

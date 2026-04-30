@@ -1,100 +1,75 @@
 import React, { useEffect } from "react";
-import { BiSolidChevronRight } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { FiX } from "react-icons/fi";
+import { FaArrowRight } from "react-icons/fa";
 import "./Nav.css";
-import "../util/core.css";
-import "../util/colors.css";
 
-const Nav = ({ isShow }) => {
-  // Lock scroll when nav is active
+const navLinks = [
+  { name: "Home", to: "/" },
+  { name: "Services", to: "/services" },
+  { name: "Our Work", to: "/example" },
+  { name: "About", to: "/about" },
+];
+
+const Nav = ({ isShow, setShow }) => {
+  const location = useLocation();
+
   useEffect(() => {
-    const body = document.body;
-
-    if (isShow) {
-      body.classList.add("no-scroll");
-    } else {
-      body.classList.remove("no-scroll");
-    }
-
-    // Clean up when component unmounts
-    return () => {
-      body.classList.remove("no-scroll");
-    };
+    document.body.classList.toggle("no-scroll", isShow);
+    return () => document.body.classList.remove("no-scroll");
   }, [isShow]);
 
+  const close = () => setShow(false);
+  const handleLink = () => {
+    close();
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div className={`nav ${isShow ? "active" : "hidden"}`}>
-      <div className="item ">
-        <Link className="link2" to="/" onClick={() => window.location.reload()}>
-          Home
-        </Link>
-        <BiSolidChevronRight className="icon" />
+    <>
+      {/* Backdrop */}
+      <div
+        className={`nav-backdrop ${isShow ? "active" : ""}`}
+        onClick={close}
+        aria-hidden="true"
+      />
+
+      <div
+        className={`nav ${isShow ? "active" : "hidden"}`}
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* Header row */}
+        <div className="nav-header">
+          <span className="nav-brand">Menu</span>
+          <button className="nav-close" onClick={close} aria-label="Close menu">
+            <FiX size={20} />
+          </button>
+        </div>
+
+        {/* Links */}
+        <nav className="nav-links">
+          {navLinks.map(({ name, to }) => (
+            <Link
+              key={to}
+              className={`nav-item ${location.pathname === to ? "nav-item--active" : ""}`}
+              to={to}
+              onClick={handleLink}
+            >
+              <span>{name}</span>
+              <FaArrowRight size={11} className="nav-item-arrow" />
+            </Link>
+          ))}
+        </nav>
+
+        {/* CTA */}
+        <div className="nav-cta">
+          <Link className="nav-cta-btn" to="/contact" onClick={handleLink}>
+            Get in touch
+          </Link>
+        </div>
       </div>
-      {/* <div className='item'>
-        <Link
-          className='link2'
-          to='/packages'
-          onClick={() => window.scrollTo(0, 0)}>
-          Packages
-        </Link>
-        <BiSolidChevronRight className='icon' />
-      </div> */}
-      <div className="item">
-        <Link
-          className="link2"
-          to="/services"
-          onClick={() => window.scrollTo(0, 0)}
-        >
-          Services
-        </Link>
-        <BiSolidChevronRight className="icon" />
-      </div>
-      <div className="item">
-        <Link
-          className="link2"
-          to="/example"
-          onClick={() => window.scrollTo(0, 0)}
-        >
-          Our Work
-        </Link>
-        <BiSolidChevronRight className="icon" />
-      </div>
-      <div className="item">
-        <Link
-          className="link2"
-          to="/about"
-          onClick={() => window.scrollTo(0, 0)}
-        >
-          About
-        </Link>
-        <BiSolidChevronRight className="icon" />
-      </div>
-      <div className="item">
-        <Link
-          className="link2"
-          to="/contact"
-          onClick={() => window.scrollTo(0, 0)}
-        >
-          Contact us
-        </Link>
-        <BiSolidChevronRight className="icon" />
-      </div>
-      {/* <div className='item'>
-        <Link
-          className='link2 align'
-          to='/checkout'
-          onClick={() => window.scrollTo(0, 0)}>
-          <CiShoppingBasket size={25} className='ic' />
-          Basket
-        </Link>
-        {Basket?.length > 0 && (
-          <div className='counter-tag-nav'>
-            <p>{Basket.length}</p>
-          </div>
-        )}
-        <BiSolidChevronRight className='icon' />
-      </div> */}
-    </div>
+    </>
   );
 };
 

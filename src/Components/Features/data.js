@@ -1,43 +1,43 @@
-// featureData.js
+// featureData.js — benefit-focused for funnel homepage
 import {
-  FaTools,
-  FaCloudflare,
-  FaNetworkWired,
-  FaHireAHelper,
+  FaBullhorn,
+  FaClock,
+  FaCalendarCheck,
+  FaRocket,
   FaMobile,
-  FaPaintBrush,
+  FaHeadset,
 } from "react-icons/fa";
 
 const featureData = [
   {
+    Icon: FaBullhorn,
+    title: "More Leads, Automatically",
+    p: "Your website works around the clock to attract and convert visitors into real enquiries — even while you sleep.",
+  },
+  {
+    Icon: FaClock,
+    title: "Saves You Hours Every Week",
+    p: "We handle design, development, and hosting so you can focus on running your business, not fiddling with a website.",
+  },
+  {
+    Icon: FaCalendarCheck,
+    title: "Automates Your Bookings",
+    p: "Clients can book calls, consultations, or appointments directly through your site — no back-and-forth needed.",
+  },
+  {
+    Icon: FaRocket,
+    title: "Live in 14 Days",
+    p: "No lengthy timelines. We move fast and get your site live quickly so you can start winning clients sooner.",
+  },
+  {
     Icon: FaMobile,
-    title: "Responsive Design",
-    p: "Ensuring a seamless user experience across every device, from smartphones to desktops, for consistent engagement.",
+    title: "Looks Great on Every Device",
+    p: "Mobile-first design that loads fast and looks sharp on phones, tablets, and desktops — wherever your customers are.",
   },
   {
-    Icon: FaCloudflare,
-    title: "Domain and Hosting",
-    p: "Providing reliable, secure infrastructure that keeps your website accessible and performing at its best.",
-  },
-  {
-    Icon: FaNetworkWired,
-    title: "Social Media Integration",
-    p: "Seamlessly linking your website to popular platforms such as Facebook, Instagram, and LinkedIn, making it easier for visitors to engage with your brand and share your content.",
-  },
-  {
-    Icon: FaHireAHelper,
-    title: "Ongoing Support",
-    p: "Offering continuous guidance to keep your site updated, troubleshoot issues, and adapt to evolving demands.",
-  },
-  {
-    Icon: FaPaintBrush,
-    title: "Bespoke Design",
-    p: "Crafting original, brand-specific visuals that highlight your unique identity and captivate your audience.",
-  },
-  {
-    Icon: FaTools,
-    title: "Technical Maintenance",
-    p: "Handling behind-the-scenes updates, security patches, and performance tweaks for long-term stability and efficiency.",
+    Icon: FaHeadset,
+    title: "Ongoing Support Included",
+    p: "We don't disappear after launch. You get continued support, updates, and advice to keep your site performing.",
   },
 ];
 

@@ -1,81 +1,77 @@
 .faq1-con {
-  background-color: white;
+  background: #06060e;
 }
+
 .faq1 {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem 5rem;
+  max-width: 1180px;
+  margin: 0 auto;
 }
+
 .faq1 .ques-con {
   padding: 2rem 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem 2rem;
+  grid-gap: 1rem 2.5rem;
 }
+
 .faq1 h1 {
-  color: var(--lw-text-color-1);
+  color: rgba(255,255,255,0.9);
   padding: 0;
   margin: 0;
-  font-size: 86px;
-  font-weight: 400;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
 }
-.faq1 p {
+
+.faq1 > p {
   padding: 0;
-  margin-top: 1rem;
-  font-size: var(--title5);
-  color: var(--lw-text-color-6);
-  font-weight: 220;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
 }
+
 .question {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
 }
+
 .question h3 {
-  color: var(--lw-text-color-6);
-  font-size: var(--large-text);
-  margin: 5px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.97rem;
+  margin: 0 0 0.5rem 0;
   font-weight: 400;
 }
 
 .question p {
-  color: var(--lw-text-color-9);
-  font-weight: 350;
-  line-height: 24px;
-  font-size: var(--small-text);
-  margin: 10px 5px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+  line-height: 1.65;
+  font-size: 0.87rem;
+  margin: 0;
 }
 
 @media (max-width: 767px) {
   .faq1 .ques-con {
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1rem;
-  }
-  .faq1 h1 {
-    font-size: 56px;
+    grid-template-columns: 1fr;
+    grid-gap: 0;
   }
   .faq1 {
-    padding: 1rem;
+    padding: 2.5rem 1.25rem;
   }
   .question {
-    border-top: 1px solid var(--gray-color-5);
     padding: 1rem 0;
-    border: none !important;
-  }
-  .question p {
-    border-top: 1px solid var(--gray-color-5);
-    padding: 1rem 0;
-    font-weight: 450;
-    border: none !important;
   }
 }
-/* Laptops and small desktops */
+
 @media (min-width: 767px) and (max-width: 1199px) {
   .faq1 .ques-con {
     grid-template-columns: repeat(2, 1fr);
   }
-  .faq1 h1 {
-    font-size: 66px;
-  }
   .faq1 {
-    padding: 2rem;
+    padding: 3rem 1.5rem;
   }
 }

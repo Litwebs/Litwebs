@@ -10,6 +10,12 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: #06060e;
+}
+
+html {
+  background-color: #06060e;
+  color-scheme: dark;
 }
 .no-scroll {
   overflow: hidden !important;
@@ -28,12 +34,12 @@ body {
   border: 2px solid transparent;
   outline: none;
   font-weight: 300;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 16px;
   min-width: 130px;
   min-height: 50px;
   transition: all 0.3s ease-in-out;
-  color: black;
+  color: #fff;
   overflow: hidden;
 }
 
@@ -88,16 +94,28 @@ body {
 }
 
 .lw-btn-fill {
-  background-color: #1d3f69;
-  color: var(--lw-text-color-10);
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  color: #fff;
   border: none;
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(124,58,237,0.35);
+}
+.lw-btn-fill:hover:not(:disabled) {
+  box-shadow: 0 0 28px rgba(124,58,237,0.55);
+  transform: translateY(-2px);
 }
 .lw-btn-outline {
-  background-color: transparent;
-  border: 1px solid var(--lw-text-color-10);
-  border: none !important;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+}
+.lw-btn-outline:hover:not(:disabled) {
+  background: rgba(255,255,255,0.1);
 }
 .lw-btn-none {
-  background-color: white;
+  background: transparent;
   border: none;
+  color: rgba(255,255,255,0.7);
 }
+

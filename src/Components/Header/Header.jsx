@@ -5,6 +5,8 @@ import Nav from "../nav/Nav";
 import "../util/core.css";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../Context/ThemeContext";
+import { HiSun, HiMoon } from "react-icons/hi";
 import logo from "../../Images/logo.jpg";
 // import { CiShoppingBasket } from "react-icons/ci";
 
@@ -23,6 +25,7 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const nav = useNavigate();
+  const { theme, toggle } = useTheme();
 
   return (
     <div className="header-con">
@@ -52,7 +55,14 @@ const Header = () => {
             </li>
           </ul>
           <Menu setShow={setShow} isShow={isShow} />
-          <Nav isShow={isShow} />
+          <button
+            className="theme-toggle"
+            onClick={toggle}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <HiSun size={18} /> : <HiMoon size={18} />}
+          </button>
+          <Nav isShow={isShow} setShow={setShow} />
         </div>
       </div>
     </div>

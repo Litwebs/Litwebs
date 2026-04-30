@@ -1,24 +1,15 @@
-.faq3{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 5rem 0 ;
-    padding: 0 2rem;
-    grid-gap: 1.5rem;
-}
-.btn-con{
-    display: flex;
-    justify-content: flex-end;
+.faq3-section {
+  padding: 0 2rem 1rem;
 }
 
-@media (max-width: 768px) {
-    .faq3{
-        padding: 0 1rem !important;
-    }
+.faq3-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
 }
-@media (max-width: 1199px) {
-    .faq3{
-        grid-template-columns: repeat(1, 1fr);
-        margin-top: 3rem;
-    }
+
+@media (max-width: 640px) {
+  .faq3-section { padding: 0 1rem 1rem; }
 }

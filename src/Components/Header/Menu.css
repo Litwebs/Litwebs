@@ -1,32 +1,23 @@
 .nav-icon {
-    width: 40px;
-    height: 30px;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
+  width: 40px;
+  height: 30px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
-  .nav-icon .line {
-    height: 5px; 
-    border-radius: 20px;
-    background-color: #2361ac;
-  }
-  
-  /* Keyframes for animating the gradient */
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
+.nav-icon .line {
+  height: 2px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.7);
+  transition: background 150ms ease;
+}
+
+.nav-icon:hover .line {
+  background: #fff;
+}
 
 .nav-icon.active .line:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
@@ -39,8 +30,9 @@
 .nav-icon.active .line:nth-child(3) {
   transform: rotate(-45deg) translate(13px, -13px);
 }
-.tag{
-  background-color: var(--blue-dark);
+
+.tag {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
   position: absolute;
   top: 10px;
   right: 5px;
@@ -51,25 +43,25 @@
   justify-content: center;
   align-items: center;
 }
-.tag p{
+
+.tag p {
   padding: 0;
   margin: 0;
-  color: var(--gray-color-4);
+  color: #fff;
 }
 
 @media (max-width: 768px) {
-  .nav-icon{
-      display: flex;
-  }
   .nav-icon {
-    width: 30px;
-    height: 20px;
+    display: flex;
+    width: 28px;
+    height: 18px;
   }
+
   .nav-icon .line {
     height: 2px;
   }
+
   .nav-icon.active .line:nth-child(3) {
     transform: rotate(-45deg) translate(8px, -8px);
   }
 }
-  

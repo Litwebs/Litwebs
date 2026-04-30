@@ -2,6 +2,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import "./theme-light.css";
 import Home from "./Components/Pages/Home/Home";
 import Example from "./Components/Pages/Example/Example";
 import Contact from "./Components/Pages/Contact/Contact";
@@ -10,6 +11,7 @@ import Project from "./Components/Pages/Project/Project";
 import Services from "./Components/Pages/Services/Services";
 import About from "./Components/Pages/About/About";
 import { ContextState } from "./Context/Content/ContentState";
+import { ThemeProvider } from "./Context/ThemeContext";
 import { useWebsiteAnalytics } from "./Components/util/useWebsiteAnalytics";
 
 function AppRoutes() {
@@ -31,9 +33,11 @@ function AppRoutes() {
 function App() {
   return (
     <Router>
-      <ContextState>
-        <AppRoutes />
-      </ContextState>
+      <ThemeProvider>
+        <ContextState>
+          <AppRoutes />
+        </ContextState>
+      </ThemeProvider>
     </Router>
   );
 }

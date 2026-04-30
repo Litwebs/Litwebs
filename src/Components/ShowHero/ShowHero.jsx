@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./ShowHero.css";
 import { useNavigate } from "react-router-dom";
 import { ContentContext } from "../../Context/Content/ContentState";
+import AutoPlayVideo from "../util/AutoPlayVideo";
 
 const ShowHero = ({ project, reverse = false }) => {
   const nav = useNavigate();
@@ -19,13 +20,10 @@ const ShowHero = ({ project, reverse = false }) => {
     <div className="max-wid">
       <section className={`showhero-container ${reverse ? "reverse" : ""}`}>
         <div className="showhero-right">
-          <video
+          <AutoPlayVideo
             className="showhero-video"
             src={project.video}
-            autoPlay
-            loop
-            muted
-            playsInline
+            controls={false}
           />
         </div>
         <div className="showhero-left">

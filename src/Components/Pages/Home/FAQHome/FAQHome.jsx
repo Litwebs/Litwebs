@@ -1,42 +1,46 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { GoPlus } from "react-icons/go";
-import { HiMiniMinusSmall } from "react-icons/hi2";
+import { FiPlus, FiMinus } from "react-icons/fi";
 import "./FAQHome.css";
 
-const FAQHome = ({ data }) => {
+const FAQHome = ({ data, title = "Frequently asked questions" }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  };
+  const toggle = (i) => setActiveIndex(i === activeIndex ? null : i);
 
   return (
-    <div className="faq-container">
-      <h2 className="faq-title t-2 uppercase-text">
-        Frequently asked questions
-      </h2>
-      {data.map((faq, index) => (
-        <div
-          className={`faq-item ${activeIndex === index ? "active" : ""}`}
-          key={index}
-          onClick={() => toggleFAQ(index)}
-        >
-          <div className="faq-question">
-            {faq.question}
-            <span className="faq-icon">
-              {activeIndex === index ? <HiMiniMinusSmall /> : <GoPlus />}
-            </span>
-          </div>
-          <div className="faq-answer">{faq.answer}</div>
-        </div>
-      ))}
-      <p
-        className="p-3"
-        style={{ textAlign: "center", marginTop: "1rem", fontSize: "0.9rem" }}
-      >
-        Still have another question?{" "}
-        <Link to="/contact" style={{ textDecoration: "none", color: "#000" }}>
+    <div className="faqh-wrap">
+      <h2 className="faqh-title">{title}</h2>
+
+      <div className="faqh-list">
+        {data.map((faq, i) => {
+          const isOpen = activeIndex === i;
+          return (
+            <div
+              key={i}
+              className={`faqh-item${isOpen ? " faqh-item--open" : ""}`}
+              onClick={() => toggle(i)}
+            >
+              <div className="faqh-question">
+                <span className="faqh-q-text">{faq.question}</span>
+                <span className="faqh-q-icon" aria-hidden="true">
+                  {isOpen ? <FiMinus size={15} /> : <FiPlus size={15} />}
+                </span>
+              </div>
+              <div
+                className="faqh-answer"
+                style={{ maxHeight: isOpen ? "300px" : "0px" }}
+              >
+                <p className="faqh-answer-text">{faq.answer}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="faqh-footer-note">
+        Still have a question?{" "}
+        <Link to="/contact" className="faqh-footer-link">
           Contact us
         </Link>
         .

@@ -2,19 +2,31 @@
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem 2rem;
+  background: #06060e;
+  min-height: 100vh;
+  position: relative;
+}
+
+.project::before {
+  content: '';
+  position: fixed;
+  inset: 0;
   background:
-    radial-gradient(circle at top left, rgba(210, 232, 255, 0.75), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(249, 239, 224, 0.7), transparent 26%),
-    linear-gradient(180deg, rgba(247, 249, 252, 0.96), rgba(239, 243, 248, 0.98));
+    radial-gradient(ellipse 50% 40% at 20% 20%, rgba(124,58,237,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(6,182,212,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .project h1 {
   margin: 0;
   text-align: left;
   font-size: clamp(1.4rem, 4vw, 2.1rem);
-  color: var(--lw-text-color-9);
+  color: rgba(255,255,255,0.9);
   font-weight: 400;
   line-height: 1.05;
+  position: relative;
+  z-index: 1;
 }
 
 .project-hero-card {
@@ -23,14 +35,16 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .project-hero-copy {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(18, 37, 66, 0.1);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
   border-radius: 28px;
   padding: 1.4rem 1.5rem;
-  box-shadow: 0 18px 44px rgba(11, 20, 35, 0.08);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.3);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   display: flex;
@@ -49,23 +63,22 @@
   width: 72px;
   height: 72px;
   border-radius: 22px;
-  background: #fff;
-  padding: 0.8rem;
-  box-shadow: 0 18px 40px rgba(11, 20, 35, 0.1);
+  overflow: hidden;
   flex: 0 0 auto;
+  background: rgba(255,255,255,0.06);
 }
 
 .project-logo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
 .project-kicker {
   margin: 0;
   margin-bottom: 0.2rem;
-  color: rgba(61, 87, 122, 0.72);
+  color: rgba(167,139,250,0.7);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -73,7 +86,7 @@
 
 .project-domain-text {
   margin: 0 0 0.45rem;
-  color: rgba(52, 70, 98, 0.78);
+  color: rgba(255,255,255,0.4);
   font-size: 0.9rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -89,10 +102,29 @@
 
 .project-description {
   margin: 0;
-  color: rgba(40, 53, 74, 0.88);
-  font-size: 0.96rem;
-  line-height: 1.7;
-  max-width: 34ch;
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.project-description-section {
+  width: min(1180px, 100%);
+  margin: 0 auto 2.25rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 28px;
+  padding: 1.5rem 1.6rem;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.project-description-label {
+  margin: 0 0 0.75rem;
+  color: rgba(167,139,250,0.6);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .project-actions {
@@ -114,36 +146,34 @@
 }
 
 .project-primary-action {
-  background: linear-gradient(135deg, #122542, #214675);
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
   color: #fff;
-  box-shadow: 0 18px 36px rgba(18, 37, 66, 0.18);
+  box-shadow: 0 0 20px rgba(124,58,237,0.4);
 }
 
-.project-primary-action:hover,
-.project-secondary-action:hover {
-  transform: translateY(-1px);
-}
+.project-primary-action:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(124,58,237,0.55); }
+.project-secondary-action:hover { transform: translateY(-1px); }
 
 .project-primary-action:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
 .project-secondary-action {
-  background: rgba(255, 255, 255, 0.7);
-  color: var(--lw-text-color-7);
-  border: 1px solid rgba(18, 37, 66, 0.08);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.65);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .project-media-shell {
   width: 100%;
   border-radius: 32px;
   padding: 1rem;
-  background: linear-gradient(180deg, rgba(8, 13, 26, 0.05), rgba(8, 13, 26, 0.12));
-  border: 1px solid rgba(18, 37, 66, 0.08);
-  box-shadow: 0 28px 72px rgba(11, 20, 35, 0.1);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 28px 72px rgba(0,0,0,0.4);
 }
 
 .project-browser-chrome {
@@ -163,7 +193,7 @@
   width: 0.72rem;
   height: 0.72rem;
   border-radius: 999px;
-  background: rgba(18, 37, 66, 0.18);
+  background: rgba(255,255,255,0.12);
 }
 
 .project-browser-domain {
@@ -171,27 +201,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgba(34, 50, 76, 0.7);
+  color: rgba(255,255,255,0.3);
   font-size: 0.88rem;
 }
 
 .showcase-card-project {
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 24px;
   text-align: left;
-  background: rgba(7, 12, 24, 0.88);
+  background: rgba(255,255,255,0.03);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   margin: 0;
   width: 100%;
   box-sizing: border-box;
   padding: 0 !important;
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(9, 15, 29, 0.2);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
 }
 
 .showcase-card-project:hover {
   transform: translateY(-4px);
-  box-shadow: 0 36px 90px rgba(9, 15, 29, 0.24);
+  box-shadow: 0 32px 80px rgba(124,58,237,0.15);
 }
 
 .showcase-video-wrapper-project {
@@ -219,34 +249,9 @@
     width: 100%;
   }
 
-  .project-description {
-    max-width: none;
-  }
-
-  .project-actions {
-    width: 100%;
-  }
+  .project-description { max-width: none; }
+  .project-actions { width: 100%; }
 
   .project-primary-action,
-  .project-secondary-action {
-    flex: 1 1 220px;
-  }
-}
-
-@media (min-width: 600px) {
-  .showcase-card-project {
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .showcase-card-project {
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .showcase-card-project {
-    max-width: 100%;
-  }
+  .project-secondary-action { flex: 1 1 220px; }
 }

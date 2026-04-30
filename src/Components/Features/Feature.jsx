@@ -1,19 +1,14 @@
 import React from "react";
 import "./Features.css";
 
-
-const Feature = ({ Icon, p, title }) => {
+const Feature = ({ Icon, p, title, index }) => {
   return (
-    <div className='con max-wid'>
-      <div className='feature'>
-        <div className='left'>
-          <Icon className='icon mar-top' />
-        </div>
-        <div className='right'>
-          <span className='t-3'>{title}</span>
-          <p className='p-1'>{p}</p>
-        </div>
+    <div className="feature" data-color={index % 6}>
+      <div className="feature-icon-wrap">
+        <Icon className="icon" />
       </div>
+      <p className="feature-title">{title}</p>
+      <p className="feature-desc">{p}</p>
     </div>
   );
 };

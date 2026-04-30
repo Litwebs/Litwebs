@@ -1,43 +1,38 @@
 import React, { useEffect } from "react";
 import Header from "../../Header/Header";
-import Banner from "../../Banner/Banner";
-import Banner2 from "../../Banner/Banner2";
-import Features from "../../Features/Features";
-import Footer from "../../Footer/Footer";
-import FAQHome from "./FAQHome/FAQHome";
-import { useNavigate } from "react-router-dom";
-import faqs from "../../../Context/FAQS";
-import ServiceHero from "../../SeviceHero/SeviceHero";
 import HomeView from "./HomeView";
-import Reviews from "./Reviews/Reviews";
+import Features from "../../Features/Features";
 import Showcase from "./Showcase/Showcase";
-import ContactForm from "../Contact/ContactForm";
+import Reviews from "./Reviews/Reviews";
+import LeadCapture from "../../LeadCapture/LeadCapture";
+import Footer from "../../Footer/Footer";
 import "./Home.css";
 
 const Home = () => {
-  const nav = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const data = faqs.slice(0, 8);
   return (
     <div className="home">
+      {/* 1. Sticky nav */}
       <Header />
-      <HomeView />
-      <Banner title="Helping Businesses reach their potential" height="200px" />
-      <Showcase />
-      <Features />
-      <ServiceHero />
 
-      <ContactForm />
+      {/* 2. Hero — headline, video placeholder, CTA */}
+      <HomeView />
+
+      {/* 3. Benefits */}
+      <Features />
+
+      {/* 4. Social proof — case studies / recent work */}
+      <Showcase />
+
+      {/* 5. Testimonials */}
       <Reviews />
-      <Banner2
-        height="140px"
-        title="Ready to get Started? Choose a package suitable for your business"
-        btn={{ name: "Get Started!", onClick: () => nav("/contact") }}
-      />
-      <FAQHome data={data} />
+
+      {/* 6. Lead capture — name / email / phone */}
+      <LeadCapture />
+
       <Footer />
     </div>
   );

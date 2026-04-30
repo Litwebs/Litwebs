@@ -94,48 +94,63 @@ const testimonials = [
   },
 ];
 
-const InfiniteCards = () => {
-  return (
-    <div className='slider-container'>
-      {/* Foggy gradient effect on sides */}
-      <div className='fade-left'></div>
-      <div className='fade-right'></div>
-
-      {/* Scrolling rows */}
-      <div className='scroll-wrapper scroll-left'>
-        <div className='scrolling-cards'>
-          {testimonials.concat(testimonials).map((item, index) => (
-            <div key={index} className='card'>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <div
-                  className='avatar'
-                  style={{ background: item.color }}></div>
-                <h4 className='t-2'>{item.name}</h4>
-              </div>
-              <p className='handle'>{item.handle}</p>
-              <p className='text'>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className='scroll-wrapper scroll-right'>
-        <div className='scrolling-cards'>
-          {testimonials.concat(testimonials).map((item, index) => (
-            <div key={index} className='card'>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <div
-                  className='avatar'
-                  style={{ background: item.color }}></div>
-                <h4 className='t-2'>{item.name}</h4>
-              </div>
-              <p className='handle'>{item.handle}</p>
-              <p className='text'>{item.text}</p>
-            </div>
-          ))}
-        </div>
+const Card = ({ item }) => (
+  <div className="card">
+    <p className="card-quote">“</p>
+    <p className="text">{item.text}</p>
+    <div
+      style={{
+        display: "flex",
+        gap: "10px",
+        alignItems: "center",
+        marginTop: "1rem",
+      }}
+    >
+      <div className="avatar" style={{ background: item.color }} />
+      <div>
+        <h4>{item.name}</h4>
+        <p className="handle">{item.handle}</p>
       </div>
     </div>
+  </div>
+);
+
+const doubled = [...testimonials, ...testimonials];
+
+const InfiniteCards = () => {
+  return (
+    <section className="reviews-section">
+      <div className="reviews-header">
+        <div className="reviews-stars">
+          {[...Array(5)].map((_, i) => (
+            <span key={i}>⭐</span>
+          ))}
+        </div>
+        <h2>What Our Clients Say</h2>
+        <p>Trusted by businesses across the UK</p>
+      </div>
+
+      <div className="slider-container">
+        <div className="fade-left" />
+        <div className="fade-right" />
+
+        <div className="scroll-wrapper scroll-left">
+          <div className="scrolling-cards">
+            {doubled.map((item, i) => (
+              <Card key={i} item={item} />
+            ))}
+          </div>
+        </div>
+
+        <div className="scroll-wrapper scroll-right">
+          <div className="scrolling-cards">
+            {doubled.map((item, i) => (
+              <Card key={i} item={item} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

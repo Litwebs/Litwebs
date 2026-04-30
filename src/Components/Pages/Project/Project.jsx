@@ -5,6 +5,7 @@ import Footer from "../../Footer/Footer";
 import Banner2 from "../../Banner/Banner2";
 import { ContentContext } from "../../../Context/Content/ContentState";
 import Showcase from "../Home/Showcase/Showcase";
+import AutoPlayVideo from "../../util/AutoPlayVideo";
 import ProjectFeedStatus from "../../util/ProjectFeedStatus/ProjectFeedStatus";
 import "./Project.css";
 
@@ -67,13 +68,10 @@ const Project = () => {
                 </div>
                 <div className="showcase-card-project" onClick={openUri}>
                   <div className="showcase-video-wrapper-project">
-                    <video
+                    <AutoPlayVideo
                       src={SelectedProject.video}
-                      muted
-                      loop
-                      autoPlay
-                      playsInline
                       className="showcase-video-project"
+                      controls={false}
                     />
                   </div>
                 </div>
@@ -101,10 +99,6 @@ const Project = () => {
                       <h1>{SelectedProject.title}</h1>
                     </div>
                   </div>
-
-                  {/* <p className="project-description">
-                    {SelectedProject.description}
-                  </p> */}
                 </div>
 
                 <div className="project-actions">
@@ -123,6 +117,13 @@ const Project = () => {
                   </button>
                 </div>
               </div>
+
+              <section className="project-description-section">
+                <p className="project-description-label">Project Overview</p>
+                <p className="project-description">
+                  {SelectedProject.description}
+                </p>
+              </section>
             </section>
           </>
         )}
